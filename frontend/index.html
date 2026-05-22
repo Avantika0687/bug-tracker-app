@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bug Tracker App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="loginContainer" class="login-container">
+        <h1>Bug Tracker App</h1>
+        <h2>Login</h2>
+
+        <input id="username" type="text" placeholder="Enter username">
+
+        <br><br>
+
+        <input id="password" type="password" placeholder="Enter password">
+
+        <br><br>
+
+        <button id="loginButton">Login</button>
+
+        <p id="loginMessage"></p>
+    </div>
+
+    <div id="dashboardContainer" class="dashboard-container" style="display: none;">
+        <h1>Bug Tracker Dashboard</h1>
+
+        <p id="welcomeMessage"></p>
+
+        <div id="dashboardSummary"></div>
+
+        <div id="dashboardActions"></div>
+
+        <br>
+
+        <button id="logoutButton">Logout</button>
+    </div>
+
+    <div id="createBugContainer" class="dashboard-container" style="display: none;">
+        <h1>Create Bug</h1>
+
+        <input id="bugTitle" type="text" placeholder="Bug title">
+
+        <br><br>
+
+        <textarea id="bugDescription" placeholder="Bug description"></textarea>
+
+        <br><br>
+
+        <select id="bugSeverity">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+            <option value="Critical">Critical</option>
+        </select>
+
+        <br><br>
+
+        <select id="bugPriority">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+            <option value="Urgent">Urgent</option>
+        </select>
+
+        <br><br>
+
+        <select id="assignedTo">
+            <option value="Developer 1">Developer 1</option>
+            <option value="Developer 2">Developer 2</option>
+            <option value="Developer 3">Developer 3</option>
+        </select>
+
+        <br><br>
+
+        <button id="saveBugButton">Create Bug</button>
+
+        <br><br>
+
+        <button id="backToDashboardButton">Back to Dashboard</button>
+    </div>
+
+    <div id="bugListContainer" class="dashboard-container" style="display: none;">
+        <h1>Bug List</h1>
+
+        <div id="bugList"></div>
+
+        <br>
+
+        <button id="backFromBugListButton">Back to Dashboard</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
