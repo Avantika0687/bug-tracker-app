@@ -24,6 +24,7 @@ const saveBugButton = document.getElementById("saveBugButton");
 
 const bugListContainer = document.getElementById("bugListContainer");
 const bugList = document.getElementById("bugList");
+const bugSearchInput = document.getElementById("bugSearchInput");
 const backFromBugListButton = document.getElementById("backFromBugListButton");
 
 let bugs = [];
@@ -137,6 +138,7 @@ logoutButton.addEventListener("click", function () {
     username.value = "";
     password.value = "";
     loginMessage.textContent = "";
+    bugSearchInput.value = "";
 
     loggedInRole = null;
     loggedInDeveloperName = null;
@@ -163,6 +165,7 @@ document.addEventListener("click", async function (event) {
 
     if (event.target.id === "viewBugsButton") {
         currentBugListFilter = null;
+        bugSearchInput.value = "";
 
         await loadBugsFromApi();
 
@@ -175,6 +178,7 @@ document.addEventListener("click", async function (event) {
 
     if (event.target.id === "myAssignedBugsButton") {
         currentBugListFilter = loggedInDeveloperName;
+        bugSearchInput.value = "";
 
         await loadBugsFromApi();
 
@@ -293,9 +297,14 @@ function showBugs(assignedDeveloperFilter = null) {
     bugList.innerHTML = "";
 
     let hasBugToShow = false;
+    const searchText = bugSearchInput.value.toLowerCase();
 
     for (let i = 0; i < bugs.length; i++) {
         if (assignedDeveloperFilter !== null && bugs[i].assignedTo !== assignedDeveloperFilter) {
+            continue;
+        }
+
+        if (searchText !== "" && bugs[i].title.toLowerCase().includes(searchText) === false) {
             continue;
         }
 
@@ -328,6 +337,10 @@ function showBugs(assignedDeveloperFilter = null) {
         bugList.innerHTML = "<p>No bugs found.</p>";
     }
 }
+
+bugSearchInput.addEventListener("input", function () {
+    showBugs(currentBugListFilter);
+});
 
 function getBugActionButtons(index) {
     if (loggedInRole === "Developer") {
